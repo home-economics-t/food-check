@@ -1,5 +1,59 @@
+<!DOCTYPE html>
+<html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>栄養計算アプリ（サンプル版）</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>栄養計算アプリ</title>
   <link rel="stylesheet" href="style.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
+<body>
+  <header>
+    <h1>栄養計算アプリ</h1>
+  </header>
+
+  <!-- 検索エリア -->
+  <section id="search-area">
+    <label for="category">カテゴリ:</label>
+    <select id="category" onchange="filterFoods()">
+      <option value="all">すべて</option>
+    </select>
+
+    <input type="text" id="keyword" placeholder="食品名で検索" oninput="filterFoods()">
+    <div id="food-list"></div>
+  </section>
+
+  <!-- 選択食品リスト -->
+  <section id="selected-foods">
+    <h2>選択した食品</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>食品名</th>
+          <th>g</th>
+          <th>エネルギー</th>
+          <th>タンパク質</th>
+          <th>脂質</th>
+          <th>炭水化物</th>
+          <th>カルシウム</th>
+          <th>鉄</th>
+          <th>ビタミンA</th>
+          <th>ビタミンC</th>
+          <th>塩分</th>
+          <th>削除</th>
+        </tr>
+      </thead>
+      <tbody id="selected-list"></tbody>
+    </table>
+  </section>
+
+  <!-- 栄養素合計とグラフ -->
+  <section id="summary">
+    <h2>栄養素合計</h2>
+    <div id="totals"></div>
+    <canvas id="nutritionChart"></canvas>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>
