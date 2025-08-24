@@ -18,7 +18,7 @@ header h1 {
 }
 
 #top-panel {
-  max-width: 700px; /* 右側テーブルと同じ幅 */
+  max-width: 700px;
   margin: 0 auto 20px auto;
 }
 
@@ -91,9 +91,10 @@ canvas {
 }
 
 /* 基礎食品群色分け */
-.group-1 { background-color: #e53935; }   /* 赤系 */
-.group-2 { background-color: #f06292; }   /* ピンク */
-.group-3 { background-color: #43a047; }   /* 緑 */
-.group-4 { background-color: #81c784; }   /* 薄い緑 */
-.group-5 { background-color: #ffeb3b; color:#000; } /* 黄色 */
-.group-6 { background-color: #ff9800; }   /* オレンジ */
+.group-1 { background-color: #e53935; }
+.group-2 { background-color: #f06292; }
+.group-3 { background-color: #43a047; }
+.group-4 { background-color: #81c784; }
+.group-5 { background-color: #ffeb3b; color:#000; }
+.group-6 { background-color: #ff9800; }
+
