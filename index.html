@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>栄養計算アプリ（サンプル版）</title>
+  <style>
+    body { font-family: sans-serif; margin: 20px; }
+    h1 { color: #2c3e50; }
+    .food-list { margin-top: 20px; }
+    .food-item { margin-bottom: 10px; }
+    table { margin-top: 20px; border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+    th { background: #f8f8f8; }
+    #totals { margin-top: 10px; }
+  </style>
+</head>
+<body>
+  <h1>栄養計算アプリ（サンプル版）</h1>
+  <div class="food-list" id="food-list">読み込み中...</div>
+
+  <h2>選択した食品</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>食品名</th>
+        <th>グラム数</th>
+        <th>エネルギー(kcal)</th>
+        <th>たんぱく質(g)</th>
+        <th>脂質(g)</th>
+        <th>炭水化物(g)</th>
+        <th>削除</th>
+      </tr>
+    </thead>
+    <tbody id="selected-list"></tbody>
+  </table>
+  <div id="totals"></div>
+
+  <script>
+    let FOODS = [];
+    const state = { selected: [] };
+
+    // JSONをfetchで読み込み
+    fetch('foods.json')
+      .then(response => response.json())
+      .then(data => {
+        FOODS = data;
+        renderFoodList();
+      })
+      .catch(error => {
+        document.getElementById("food-list").innerText = "食品データの読み込みに失敗しました";
+        console.error(error);
+      });
+
+    // 食品リスト表示
+    function renderFoodList() {
+      const listEl = document.getElementById("food-list");
+      listEl.innerHTML = FOODS.map(food => `
+        <div class="food-item">
+          ${food.name} (${food.category})  
+          <input type="number" min="1" value="100" data-id="${food.id}" class="grams">
+          <button onclick="addFood(${food.id})">追加</button>
+        </div>
+      `).join('');
+    }
+
+    // 食品を追加
+    function addFood(id) {
+      const food = FOODS.find(f => f.id === id);
+      const grams = document.querySelector(`input[data-id="${id}"]`).value;
+      state.selected.push({ ...food, grams: parseFloat(grams) });
+      renderSelected();
+    }
+
+    // 食品を削除
+    function removeFood(index) {
+      state.selected.splice(index, 1);
+      renderSelected();
+    }
+
+    // 選択した食品を表示
+    function renderSelected() {
+      const tbody = document.getElementById("selected-list");
+      tbody.innerHTML = state.selected.map((f, i) => `
+        <tr>
+          <td>${f.name}</td>
+          <td><input type="number" value="${f.grams}" min="1" onchange="updateGrams(${i}, this.value)"></td>
+          <td>${(f.energy_kcal * f.grams / 100).toFixed(1)}</td>
+          <td>${(f.protein_g * f.grams / 100).toFixed(1)}</td>
+          <td>${(f.fat_g * f.grams / 100).toFixed(1)}</td>
+          <td>${(f.carbs_g * f.grams / 100).toFixed(1)}</td>
+          <td><button onclick="removeFood(${i})">削除</button></td>
+        </tr>
+      `).join('');
+      updateTotals();
+    }
+
+    // グラム数を更新
+    function updateGrams(index, grams) {
+      state.selected[index].grams = parseFloat(grams);
+      renderSelected();
+    }
+
+    // 合計を表示
+    function updateTotals() {
+      const totals = { energy_kcal: 0, protein_g: 0, fat_g: 0, carbs_g: 0 };
+      state.selected.forEach(f => {
+        totals.energy_kcal += f.energy_kcal * f.grams / 100;
+        totals.protein_g += f.protein_g * f.grams / 100;
+        totals.fat_g += f.fat_g * f.grams / 100;
+        totals.carbs_g += f.carbs_g * f.grams / 100;
+      });
+      document.getElementById("totals").innerHTML = `
+        <strong>合計:</strong>
+        エネルギー: ${totals.energy_kcal.toFixed(1)} kcal /
+        たんぱく質: ${totals.protein_g.toFixed(1)} g /
+        脂質: ${totals.fat_g.toFixed(1)} g /
+        炭水化物: ${totals.carbs_g.toFixed(1)} g
+      `;
+    }
+  </script>
+</body>
+</html>

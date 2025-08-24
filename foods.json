@@ -1,0 +1,29 @@
+[
+  {
+    "id": 1,
+    "name": "ごはん",
+    "category": "主食",
+    "energy_kcal": 168,
+    "protein_g": 2.5,
+    "fat_g": 0.3,
+    "carbs_g": 37.1
+  },
+  {
+    "id": 2,
+    "name": "食パン",
+    "category": "主食",
+    "energy_kcal": 248,
+    "protein_g": 8.9,
+    "fat_g": 4.2,
+    "carbs_g": 46.6
+  },
+  {
+    "id": 3,
+    "name": "牛乳",
+    "category": "乳製品",
+    "energy_kcal": 67,
+    "protein_g": 3.3,
+    "fat_g": 3.8,
+    "carbs_g": 4.8
+  }
+]
