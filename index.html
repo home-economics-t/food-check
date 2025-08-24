@@ -2,28 +2,55 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>栄養計算アプリ</title>
+  <title>栄養計算アプリ（改良版）</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <h1>栄養計算アプリ</h1>
+    <h1>栄養計算アプリ（家族対応版）</h1>
   </header>
 
-  <div id="main" class="flex-container">
-    <!-- 左側：食品選択 -->
-    <div id="left-panel">
-      <div id="search-area">
-        <select id="category" onchange="filterFoods()">
-          <option value="all">すべてのカテゴリ</option>
+  <!-- 上部：合計値 + グラフ + 年齢/性別選択 -->
+  <section id="top-panel">
+    <div id="user-selection">
+      <label>年齢カテゴリ:
+        <select id="age-category" onchange="updateChart()">
+          <option value="幼児">幼児</option>
+          <option value="小学生">小学生</option>
+          <option value="中学生">中学生</option>
+          <option value="高校生">高校生</option>
+          <option value="成人">成人</option>
+          <option value="高齢者">高齢者</option>
         </select>
-        <input type="text" id="keyword" placeholder="キーワード" oninput="filterFoods()">
-      </div>
+      </label>
+      <label>性別:
+        <select id="sex" onchange="updateChart()">
+          <option value="男性">男性</option>
+          <option value="女性">女性</option>
+        </select>
+      </label>
+    </div>
+
+    <div id="totals"></div>
+    <canvas id="nutritionChart"></canvas>
+  </section>
+
+  <!-- 折りたたみ検索 -->
+  <button id="toggle-search" onclick="toggleSearch()">🔍 検索バー表示/非表示</button>
+  <section id="search-area">
+    <select id="category" onchange="filterFoods()">
+      <option value="all">すべてのカテゴリ</option>
+    </select>
+    <input type="text" id="keyword" placeholder="キーワード" oninput="filterFoods()">
+  </section>
+
+  <!-- メイン：左食品リスト、右選択食品テーブル -->
+  <div id="main" class="flex-container">
+    <div id="left-panel">
       <div id="food-list"></div>
     </div>
 
-    <!-- 右側：選択食品と合計 -->
     <div id="right-panel">
       <div id="selected-foods">
         <table>
@@ -46,8 +73,6 @@
           <tbody id="selected-list"></tbody>
         </table>
       </div>
-      <div id="totals"></div>
-      <canvas id="nutritionChart"></canvas>
     </div>
   </div>
 

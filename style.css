@@ -1,17 +1,19 @@
 body {
-  font-family: Arial, sans-serif;
+  font-family: 'Comic Sans MS', Arial, sans-serif;
   margin: 20px;
-  background-color: #f9f9f9;
+  background-color: #fff8e1;
+  color: #333;
 }
 
 header h1 {
   text-align: center;
-  color: #333;
+  color: #ff7043;
 }
 
 .flex-container {
   display: flex;
   gap: 20px;
+  margin-top: 20px;
 }
 
 #left-panel, #right-panel {
@@ -19,41 +21,64 @@ header h1 {
 }
 
 #search-area {
-  margin-bottom: 20px;
+  margin: 10px 0;
+  display: flex;
+  gap: 10px;
 }
 
 #search-area input, #search-area select {
   padding: 5px;
-  margin-right: 10px;
-}
-
-.food-item {
-  margin-bottom: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
 }
 
 button {
   padding: 5px 10px;
   cursor: pointer;
+  border-radius: 5px;
+  border: none;
+  background-color: #ffcc80;
+  box-shadow: 2px 2px 5px rgba(0,0,0,0.2);
+}
+
+.food-item {
+  margin-bottom: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: #ffe0b2;
 }
 
 #selected-foods table {
   width: 100%;
   border-collapse: collapse;
-  margin-bottom: 20px;
+  margin-top: 10px;
 }
 
 #selected-foods th, #selected-foods td {
-  border: 1px solid #333;
+  border: 1px solid #ffb74d;
   padding: 5px;
   text-align: center;
+  border-radius: 5px;
 }
 
 #totals {
-  margin-bottom: 20px;
   font-weight: bold;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #fff3e0;
+  border-radius: 5px;
 }
 
 canvas {
   max-width: 100%;
   height: auto;
+  margin-bottom: 20px;
 }
+
+.category-主食 { background-color: #ffd54f; }
+.category-乳製品 { background-color: #4fc3f7; }
+.category-卵・大豆製品 { background-color: #aed581; }
+.category-野菜 { background-color: #81c784; }
+.category-果物 { background-color: #f06292; }
+.category-魚介 { background-color: #4dd0e1; }
+.category-肉 { background-color: #e57373; }
