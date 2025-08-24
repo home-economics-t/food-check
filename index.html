@@ -2,19 +2,19 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8">
-  <title>栄養計算アプリ（改良版）</title>
+  <title>栄養計算アプリ（UI改善版）</title>
   <link rel="stylesheet" href="style.css">
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
   <header>
-    <h1>栄養計算アプリ（家族対応版）</h1>
+    <h1>栄養計算アプリ（家族対応・UI改善）</h1>
   </header>
 
-  <!-- 上部：合計値 + グラフ + 年齢/性別選択 -->
+  <!-- 上部パネル -->
   <section id="top-panel">
     <div id="user-selection">
-      <label>年齢カテゴリ:
+      <label>年齢:
         <select id="age-category" onchange="updateChart()">
           <option value="幼児">幼児</option>
           <option value="小学生">小学生</option>
@@ -31,26 +31,26 @@
         </select>
       </label>
     </div>
-
     <div id="totals"></div>
     <canvas id="nutritionChart"></canvas>
   </section>
 
-  <!-- 折りたたみ検索 -->
-  <button id="toggle-search" onclick="toggleSearch()">🔍 検索バー表示/非表示</button>
-  <section id="search-area">
-    <select id="category" onchange="filterFoods()">
-      <option value="all">すべてのカテゴリ</option>
-    </select>
-    <input type="text" id="keyword" placeholder="キーワード" oninput="filterFoods()">
+  <!-- 折りたたみボタン -->
+  <button id="toggle-search" onclick="toggleSearch()">🔍 食品リスト表示/非表示</button>
+
+  <!-- 検索＋食品リストまとめ -->
+  <section id="search-food-panel">
+    <div id="search-area">
+      <select id="category" onchange="filterFoods()">
+        <option value="all">すべてのカテゴリ</option>
+      </select>
+      <input type="text" id="keyword" placeholder="キーワード" oninput="filterFoods()">
+    </div>
+    <div id="food-list"></div>
   </section>
 
-  <!-- メイン：左食品リスト、右選択食品テーブル -->
+  <!-- 選択食品テーブル -->
   <div id="main" class="flex-container">
-    <div id="left-panel">
-      <div id="food-list"></div>
-    </div>
-
     <div id="right-panel">
       <div id="selected-foods">
         <table>
