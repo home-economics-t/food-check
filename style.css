@@ -1,0 +1,70 @@
+body {
+  font-family: sans-serif;
+  margin: 20px;
+  background-color: #fdfdfd;
+  color: #333;
+}
+
+h1 {
+  color: #2c3e50;
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  color: #34495e;
+  font-size: 20px;
+  margin-top: 30px;
+}
+
+.food-list {
+  margin-top: 20px;
+}
+
+.food-item {
+  margin-bottom: 10px;
+}
+
+.food-item input {
+  width: 70px;
+  padding: 3px;
+  margin-left: 5px;
+}
+
+.food-item button {
+  margin-left: 5px;
+  padding: 3px 8px;
+  background-color: #3498db;
+  color: white;
+  border: none;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.food-item button:hover {
+  background-color: #2980b9;
+}
+
+table {
+  margin-top: 20px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+th, td {
+  border: 1px solid #ccc;
+  padding: 8px;
+  text-align: center;
+}
+
+th {
+  background: #f8f8f8;
+}
+
+#totals {
+  margin-top: 15px;
+  padding: 10px;
+  background-color: #ecf0f1;
+  border-radius: 5px;
+  font-weight: bold;
+}
